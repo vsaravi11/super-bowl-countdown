@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Bowl LIX Countdown</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/vsaravi11/Super-Bowl-Countdown-Assets/main/Countdown%20Image.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: inherit;
+        }
+
+        #container {
+            display: block;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 100px auto 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 55px;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 10px 0;
+            color: white;
+            white-space: nowrap;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 72px;
+            background-color: transparent;
+            white-space: nowrap;
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px 0;
+            color: white;
+            flex-wrap: nowrap;
+        }
+
+        .time-unit {
+            margin: 0 10px;
+            padding: 0 10px;
+        }
+
+        .time-number {
+            display: block;
+            font-size: inherit;
+        }
+
+        .time-label {
+            display: block;
+            font-size: 0.5em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 50px;
+            }
+            h2 {
+                font-size: 25px;
+            }
+            #countdown {
+                font-size: 60px;
+                padding: 5px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 45px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            #countdown {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 30px;
+            }
+            h2 {
+                font-size: 16px;
+                margin: 5px 0;
+            }
+            #countdown {
+                font-size: 30px;
+                padding: 5px 0;
+            }
+            .time-unit {
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>SUPER BOWL</h1>
+        <h2>Countdown to February 9, 2025 at 6:30 PM</h2>
+        <div id="countdown"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var countDownDate = new Date("Feb 9, 2025 18:30:00").getTime();
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = `
+                        <div class="time-unit">
+                            <span class="time-number">0</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">0</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">0</span>
+                            <span class="time-label">Mins</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">0</span>
+                            <span class="time-label">Secs</span>
+                        </div>
+                    `;
+                    var gameTime = document.createElement("h2");
+                    gameTime.textContent = "It's Game Time!";
+                    gameTime.style.fontSize = "50px";
+                    gameTime.style.marginTop = "20px";
+                    document.getElementById("container").appendChild(gameTime);
+                } else {
+                    document.getElementById("countdown").innerHTML = `
+                        <div class="time-unit">
+                            <span class="time-number">${days}</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">${hours}</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">${minutes}</span>
+                            <span class="time-label">Mins</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number">${seconds}</span>
+                            <span class="time-label">Secs</span>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
