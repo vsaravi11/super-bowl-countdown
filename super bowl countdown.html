@@ -145,6 +145,14 @@
                 font-size: 72px; /* Keep font size unchanged */
             }
         }
+
+        /* Game Time message styling */
+        .game-time-message {
+            font-size: 48px;
+            font-weight: bold;
+            color: white; /* Changed to white */
+            text-transform: uppercase; /* Changed to all caps */
+        }
     </style>
 </head>
 <body>
@@ -187,7 +195,7 @@
                         </div>
                     `;
                     var gameTime = document.createElement("h2");
-                    gameTime.textContent = "It's Game Time!";
+                    gameTime.textContent = "IT'S GAME TIME!";
                     gameTime.classList.add("game-time-message");
                     document.getElementById("container").appendChild(gameTime);
                 } else {
